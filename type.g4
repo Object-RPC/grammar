@@ -2,18 +2,24 @@ grammar type;
 
 import character;
 
-type: NAME ('extends' NAME)* ('implements' NAME (COMMA NAME)*)? START_BRACE
-	( (NAME SPLIT TYPE) | FUNCTION )*
+object: 'type' NAME ('extends' NAME)? ('implements' NAME (COMMA NAME)*)? START_BRACE
+	( memberField | memberFunction )*
 END_BRACE
 ;
 
-NAME: [_a-zA-Z] [a-zA-Z0-9]*;
+memberFunction: START_BRACKET type NAME (COMMA type)* END_BRACKET;
+memberField: NAME COLON type;
 
-FUNCTION_TYPE: TYPE START_BRACKET TYPE (COMMA TYPE)* END_BRACKET;
+type: ( builtinType | arrayType | fuctionType | NAME )'!'?;
+
+builtinType: BUILTIN_STRING_TYPE | builtinTypeInterger | BUILTIN_BOOLEAN_TYPE | BUILTIN_VOID_TYPE;
+fuctionType: START_BRACKET type (COMMA type)* END_BRACKET;
+arrayType: START_BRACKET type END_BRACKET;
 
 BUILTIN_STRING_TYPE: 'string';
-BUILTIN_INTERGER_TYPE: 'fiexd'? 'unsigned'? 'integer' '8' | '16' | '32' | '64';
+builtinTypeInterger: ( 'fiexd'? 'unsigned'? 'integer' ( '8' | '16' | '32' | '64' ) );
 BUILTIN_BOOLEAN_TYPE: 'boolean';
 BUILTIN_VOID_TYPE: 'void';
 
-ARRAY_TYPE: START_SQUARE_BRACKET TYPE END_SQUARE_BRACKET '->' TYPE;
+NAME: [_a-zA-Z] [a-zA-Z0-9]*;
+

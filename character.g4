@@ -3,15 +3,14 @@ grammar character;
 NEWLINE: '\r'? '\n' -> skip;
 WHITESOACE: [ \t]+ -> skip;
 
-COMMA: ',' -> skip;
+COMMA: ',';
+COLON: ':';
 
-START_BRACKET: '(' -> skip;
-END_BRACKET: ')' -> skip;
+START_PARENTHESE: '(';
+END_PARENTHESE: ')';
 
-START_BRACE: '{' -> skip;
-END_BRACE: '}' -> skip;
+START_BRACKET: '[';
+END_BRACKET: ']';
 
-START_SQUARE_BRACKET: '[' -> skip;
-END_SQUARE_BRACKET: ']' -> skip;
-
-SPLIT: ':' -> skip;
+START_BRACE: '{';
+END_BRACE: '}';
