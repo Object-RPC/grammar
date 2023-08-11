@@ -1,25 +1,29 @@
 grammar type;
 
-import character;
+import symbol, keyword, builtin;
 
-object: 'type' NAME ('extends' NAME)? ('implements' NAME (COMMA NAME)*)? START_BRACE
-	( memberField | memberFunction )*
-END_BRACE
-;
+NAME: [a-zA-Z_][a-zA-Z0-9_]+;
 
-memberFunction: START_BRACKET type NAME (COMMA type)* END_BRACKET;
-memberField: NAME COLON type;
+functionName: NAME;
 
-type: ( builtinType | arrayType | fuctionType | NAME )'!'?;
+function: START_BRACKET type functionName (COMMA type)* END_BRACKET;
 
-builtinType: BUILTIN_STRING_TYPE | builtinTypeInterger | BUILTIN_BOOLEAN_TYPE | BUILTIN_VOID_TYPE;
+functions: function*;
+
+objectFieldName: NAME;
+
+field: objectFieldName COLON type;
+
+fields: field*;
+
 fuctionType: START_BRACKET type (COMMA type)* END_BRACKET;
 arrayType: START_BRACKET type END_BRACKET;
 
-BUILTIN_STRING_TYPE: 'string';
-builtinTypeInterger: ( 'fiexd'? 'unsigned'? 'integer' ( '8' | '16' | '32' | '64' ) );
-BUILTIN_BOOLEAN_TYPE: 'boolean';
-BUILTIN_VOID_TYPE: 'void';
+type: ( builtinType | arrayType | fuctionType | NAME )'!'?;
 
-NAME: [_a-zA-Z] [a-zA-Z0-9]*;
+objectName: NAME;
 
+object: 'type' objectName ( 'extends' objectName ( COMMA objectName )* )? ( 'implements' objectName ( COMMA objectName )* )? START_BRACE
+	fields | functions
+END_BRACE
+;

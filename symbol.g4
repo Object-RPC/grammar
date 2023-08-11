@@ -1,7 +1,7 @@
-grammar character;
+grammar symbol;
 
-NEWLINE: '\r'? '\n' -> skip;
-WHITESOACE: [ \t]+ -> skip;
+NEWLINE: ( '\r''\n'? | '\n' )-> skip;
+WHITESPACE: [ \t]+ -> skip;
 
 COMMA: ',';
 COLON: ':';
