@@ -1,7 +1,11 @@
 grammar symbol;
 
-NEWLINE: ( '\r''\n'? | '\n' )-> skip;
-WHITESPACE: [ \t]+ -> skip;
+NEWLINE: '\r'?'\n' -> skip;
+SPACE: [ \t]+ -> skip;
+
+STATEMENT_SEPARATOR: ( NEWLINE | ';' );
+
+RIGHT_ARROW: '->';
 
 COMMA: ',';
 COLON: ':';

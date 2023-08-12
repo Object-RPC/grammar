@@ -1,29 +1,30 @@
 grammar type;
 
-import symbol, keyword, builtin;
+import symbol, keyword, builtin, entity, comment;
 
-NAME: [a-zA-Z_][a-zA-Z0-9_]+;
+object: KEYWORD_OBJECT objectName ( KEYWORD_OBJECT_EXTENDS objectName ( COMMA objectName )* )? ( KEYWORD_OBJECT_IMPLEMENTS objectName ( COMMA objectName )* )? START_BRACE
+	 objectMemers
+END_BRACE
+;
 
-functionName: NAME;
-
-function: START_BRACKET type functionName (COMMA type)* END_BRACKET;
-
-functions: function*;
-
-objectFieldName: NAME;
+objectMemers: ( ( field | function ) STATEMENT_SEPARATOR* )*;
 
 field: objectFieldName COLON type;
 
-fields: field*;
+objectFieldName: NAME;
 
-fuctionType: START_BRACKET type (COMMA type)* END_BRACKET;
-arrayType: START_BRACKET type END_BRACKET;
+function: functionName START_PARENTHESE ( fuctionArgument ( COMMA fuctionArgument )* )? END_PARENTHESE RIGHT_ARROW type;
 
-type: ( builtinType | arrayType | fuctionType | NAME )'!'?;
+functionName: NAME;
+
+type: ( builtinType | arrayType | fuctionType | objectName )'!'?;
 
 objectName: NAME;
 
-object: 'type' objectName ( 'extends' objectName ( COMMA objectName )* )? ( 'implements' objectName ( COMMA objectName )* )? START_BRACE
-	fields | functions
-END_BRACE
-;
+fuctionType: START_PARENTHESE ( fuctionArgument ( COMMA fuctionArgument )* )? END_PARENTHESE RIGHT_ARROW type;
+
+fuctionArgument: fuctionArgumentName? COLON? type;
+
+fuctionArgumentName: NAME;
+
+arrayType: START_BRACKET type END_BRACKET;
