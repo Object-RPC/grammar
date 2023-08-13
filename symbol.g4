@@ -7,8 +7,12 @@ STATEMENT_SEPARATOR: ( NEWLINE | ';' );
 
 RIGHT_ARROW: '->';
 
+ANNOTATION: '@';
+
 COMMA: ',';
 COLON: ':';
+
+ASSIGN: '=';
 
 START_PARENTHESE: '(';
 END_PARENTHESE: ')';

@@ -2,7 +2,7 @@ grammar keyword;
 
 import symbol;
 
-KEYWORD_TYPE_UNSIGNED: 'unsigned';
+KEYWORD_TYPE_NUMBER_UNSIGNED: 'unsigned';
 fragment KEYWORD_TYPE_BIT_WIDTH: '8' | '16' | '32' | '64';
 
 KEYWORD_TYPE_VOID: 'void';
@@ -13,7 +13,14 @@ KEYWORD_TYPE_INTEGER: 'integer' KEYWORD_TYPE_BIT_WIDTH;
 KEYWORD_TYPE_FLOAT: 'float' KEYWORD_TYPE_BIT_WIDTH;
 KEYWORD_TYPE_STRING: 'string';
 
-KEYWORD_ENUM: 'enum';
+KEYWORD_TYPE: 'type';
+
 KEYWORD_OBJECT: 'object';
 KEYWORD_OBJECT_EXTENDS: 'extends';
 KEYWORD_OBJECT_IMPLEMENTS: 'implements';
+
+KEYWORD_ENUM: 'enum';
+
+KEYWORD_ANNOTATION: 'annotation';
+
+KEYWORD_DEFAULT: 'default';
