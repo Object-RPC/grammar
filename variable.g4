@@ -11,9 +11,8 @@ variableValueAssignBoolean: builtinTypeBoolean ( ASSIGN variableValueBoolean )?;
 variableValueAssignInteger: builtinTypeInteger ( ASSIGN variableValueInteger )?;
 variableValueAssignFloat: builtinTypeFloat ( ASSIGN variableValueFloat )?;
 variableValueAssignString: builtinTypeString ( ASSIGN variableValueString )?;
-variableValueAssignObject: objectType ( START_BRACE ( variableDefinition STATEMENT_SEPARATOR* )* END_BRACE )?;
+variableValueAssignObject: objectType ( ASSIGN? START_BRACE ( variableValueAssign STATEMENT_SEPARATOR* )* END_BRACE )?;
 variableValueAssignType: typeType ( ASSIGN variableValueType )?;
-
 
 variableName: NAME;
 
